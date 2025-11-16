@@ -56,9 +56,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      font-size: 0.75rem;
       color: #e5e7eb;
 
       /* Neon-Gradient */
@@ -90,9 +87,10 @@
       box-shadow:
         0 0 15px rgba(56,189,248,0.4),
         0 0 30px rgba(129,140,248,0.4);
+      z-index: 0;
     }
 
-    /* Innerer Kreis */
+    /* Innerer schwarzer Kreis */
     #wheel::after {
       content: "";
       position: absolute;
@@ -103,22 +101,19 @@
       box-shadow:
         0 0 20px rgba(15,23,42,1),
         0 0 30px rgba(15,23,42,0.9);
-    }
-
-    #wheel span {
-      position: relative;
       z-index: 1;
-      font-weight: 600;
-      text-shadow: 0 0 8px rgba(15,23,42,0.9);
     }
 
-    #wheel span::before {
-      content: "ARC WHEEL";
-      display: block;
-      font-size: 0.65rem;
-      opacity: 0.7;
-      letter-spacing: 0.35em;
-      margin-bottom: 6px;
+    /* Pogchamp Emote mittig im schwarzen */
+    #pog {
+      position: relative;
+      z-index: 2;           /* über dem inneren Kreis */
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      pointer-events: none; /* Klicks gehen ans Wheel */
+      user-select: none;
+      font-size: 0;         /* falls Bild nicht lädt, Alt-Text unsichtbar */
     }
 
     /* Ergebnis – Grundstil (weiß, kein Glow) */
@@ -159,7 +154,8 @@
 
   <!-- Rad -->
   <div id="wheel">
-    <span>KLICK ZUM DREHEN</span>
+    <!-- Nur das Emote, keine Schrift -->
+    <img id="pog" src="pog.png" alt="PogChamp">
   </div>
 
   <!-- Ergebnis -->
@@ -187,7 +183,7 @@
 
       isSpinning = true;
 
-      // sichtbare Ausgabe erstmal ausblenden
+      // Ergebnis ausblenden
       result.style.opacity = 0;
 
       // Zufällige Karte
