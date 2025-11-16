@@ -6,13 +6,17 @@
 
   <style>
     :root {
-      /* grob an ARC-Logo angelehnte Farben */
       --arc-bg: #000000;
       --arc-cream: #f5f0df;
-      --arc-teal: #4adfd0;
-      --arc-yellow: #ffe66d;
-      --arc-orange: #ff9f1c;
-      --arc-red: #ff0044;
+
+      /* Deine Farben als CSS Variablen */
+      --c1: rgb(129,242,233);
+      --c2: rgb(49,246,138);
+      --c3: rgb(252,209,7);
+      --c4: rgb(245,10,14);
+
+      /* fünfte neutrale Farbe */
+      --c5: #222;
     }
 
     body {
@@ -28,7 +32,6 @@
       text-align: center;
     }
 
-    /* Logo */
     #logo {
       width: 260px;
       margin-bottom: 20px;
@@ -50,12 +53,12 @@
       height: 0;
       border-left: 15px solid transparent;
       border-right: 15px solid transparent;
-      border-bottom: 25px solid var(--arc-red);
+      border-bottom: 25px solid var(--c4);
       margin-bottom: 10px;
-      filter: drop-shadow(0 0 10px rgba(255,0,68,0.8));
+      filter: drop-shadow(0 0 10px rgba(245,10,14,0.8));
     }
 
-    /* Rad – ARC Logo Style */
+    /* Wheel */
     #wheel {
       position: relative;
       width: 260px;
@@ -67,17 +70,22 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
       background:
-        radial-gradient(circle at 25% 25%, rgba(74,223,208,0.35), transparent 55%),
-        radial-gradient(circle at 75% 75%, rgba(255,0,68,0.35), transparent 55%),
+        /* Lichteffekte */
+        radial-gradient(circle at 25% 25%, rgba(129,242,233,0.35), transparent 55%),
+        radial-gradient(circle at 75% 75%, rgba(245,10,14,0.35), transparent 55%),
+
+        /* Deine 4 Farben + 1 Neutral */
         conic-gradient(
           from 0deg,
-          var(--arc-teal)   0 20%,
-          var(--arc-yellow) 20% 40%,
-          var(--arc-orange) 40% 60%,
-          var(--arc-red)    60% 80%,
-          var(--arc-cream)  80% 100%
+          var(--c1) 0 20%,     /* Farbe 1 */
+          var(--c2) 20% 40%,   /* Farbe 2 */
+          var(--c3) 40% 60%,   /* Farbe 3 */
+          var(--c4) 60% 80%,   /* Farbe 4 */
+          var(--c5) 80% 100%   /* neutrales Feld */
         );
+
       box-shadow:
         0 0 25px rgba(0,0,0,0.9),
         0 0 40px rgba(0,0,0,0.9),
@@ -92,12 +100,11 @@
       inset: -14px;
       border-radius: 50%;
       border: 2px solid rgba(245,240,223,0.35);
-      box-shadow:
-        0 0 18px rgba(0,0,0,0.9);
+      box-shadow: 0 0 18px rgba(0,0,0,0.9);
       z-index: 0;
     }
 
-    /* Innerer schwarzer Kreis */
+    /* Innerer Kreis */
     #wheel::after {
       content: "";
       position: absolute;
@@ -105,13 +112,10 @@
       height: 115px;
       border-radius: 50%;
       background: radial-gradient(circle, #050608 0, #050608 55%, #000000);
-      box-shadow:
-        0 0 20px #000000,
-        0 0 30px #000000;
+      box-shadow: 0 0 20px #000000, 0 0 30px #000000;
       z-index: 1;
     }
 
-    /* Pogchamp Emote mittig */
     #pog {
       position: relative;
       z-index: 2;
@@ -123,7 +127,6 @@
       font-size: 0;
     }
 
-    /* Ergebnis */
     #result {
       margin-top: 25px;
       font-size: 1.3rem;
@@ -135,10 +138,10 @@
     }
 
     #result .map-name {
-      color: var(--arc-yellow);
+      color: var(--c3);
       text-shadow:
-        0 0 10px rgba(255,230,109,0.9),
-        0 0 18px rgba(255,159,28,0.8);
+        0 0 10px rgba(252,209,7,0.9),
+        0 0 18px rgba(252,209,7,0.8);
     }
 
     small {
@@ -151,19 +154,16 @@
 
 <body>
 
-  <!-- ARC Logo -->
   <img src="arc-logo.jpg" id="logo" alt="ARC Raiders Logo">
 
   <h1>ARC Raiders Wheel</h1>
 
   <div id="pointer"></div>
 
-  <!-- Wheel -->
   <div id="wheel">
     <img id="pog" src="pog.png" alt="PogChamp">
   </div>
 
-  <!-- Ergebnis -->
   <div id="result">Klicke auf das Rad, um eine Karte zu wählen.</div>
 
   <small>Karten: Damm Battlegrounds, The Spaceport, Buried City, Blue Gate, Stella Montis</small>
@@ -208,4 +208,3 @@
 
 </body>
 </html>
-
